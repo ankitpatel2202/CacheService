@@ -1,7 +1,8 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.6.RELEASE'
+	id 'org.springframework.boot' version '2.2.5.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id "io.freefair.lombok" version "5.0.0-rc4"
 }
 
 group = 'com.espressif.cache '
@@ -23,7 +24,7 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -31,6 +32,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+	//compile 'org.springframework.plugin:spring-plugin-core:2.0.0.RELEASE'
+	compile 'org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE'
 
 	// https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
 	testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
