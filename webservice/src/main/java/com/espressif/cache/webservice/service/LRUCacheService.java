@@ -15,14 +15,22 @@ import java.util.Map;
 public class LRUCacheService {
     private static final Logger logger = LoggerFactory.getLogger(LRUCacheService.class);
 
-    @Value("${cache.lru.maxsize}")
     private int maxSize;
+    private Map<String, DoublyLinkedListNode> cache;
+    private int currentSize;
+    private DoublyLinkedList listOfMostRecent;
 
-    private Map<String, DoublyLinkedListNode> cache = new HashMap<>();
+    public LRUCacheService(@Value("${cache.lru.maxsize}") int maxSize){
+        if(maxSize <=0){
+            this.maxSize = 10;  //Default size of the cache
+        } else {
+            this.maxSize = maxSize;
+        }
 
-    private int currentSize = 0;
-
-    private DoublyLinkedList listOfMostRecent = new DoublyLinkedList();
+        this.currentSize = 0;
+        this.cache = new HashMap<>();
+        this.listOfMostRecent = new DoublyLinkedList();
+    }
 
     public void insertKeyValuePair(String key, int value){
         logger.info("adding new key-value pair into the cache -> key: {}, value: {}",key,value);
